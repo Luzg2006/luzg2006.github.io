@@ -1,0 +1,199 @@
+
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Proyecto Estudiantil</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      background-color: #f0f0f0;
+      justify-content: center;
+    }
+
+    nav button {
+      padding: 1em;
+      cursor: pointer;
+      background-color: #ddd;
+      border: none;
+      outline: none;
+      margin: 0 5px;
+    }
+
+    nav button:hover {
+      background-color: #bbb;
+    }
+
+    section {
+      display: none;
+      padding: 2em;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .login-form input {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .card {
+      background-color: #e0e0e0;
+      padding: 1em;
+      margin: 1em 0;
+      border-radius: 10px;
+    }
+
+    .gallery img {
+      width: 100px;
+      margin: 10px;
+    }
+
+    .profile-img {
+      max-width: 150px;
+      border-radius: 50%;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      max-width: 600px;
+      height: 350px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Mi Sitio Estudiantil</h1>
+</header>
+
+<nav>
+  <button onclick="showTab('inicio')">Inicio</button>
+  <button onclick="showTab('login')">Login</button>
+  <button onclick="authTab('perfil')">Perfil</button>
+  <button onclick="authTab('pec')">Actividades PEC</button>
+  <button onclick="authTab('museo')">Museo Virtual</button>
+  <button onclick="authTab('video')">Video Diseño</button>
+</nav>
+
+<!-- Inicio -->
+<section id="inicio" class="active">
+  <h2>Bienvenidos</h2>
+  <p>Este sitio tiene como objetivo presentar el perfil académico del estudiante, sus proyectos, actividades PEC y más.</p>
+  <img src="https://via.placeholder.com/600x200?text=Banner+Estudiantil" alt="Banner Estudiantil">
+</section>
+
+<!-- Login -->
+<section id="login">
+  <h2>Acceso</h2>
+  <div class="login-form">
+    <input type="text" id="username" placeholder="Usuario" />
+    <input type="password" id="password" placeholder="Contraseña" />
+    <button onclick="login()">Ingresar</button>
+    <p id="login-msg" style="color: red;"></p>
+  </div>
+</section>
+
+<!-- Perfil -->
+<section id="perfil">
+  <h2>Perfil del Estudiante</h2>
+  <img class="profile-img" src="https://via.placeholder.com/150" alt="Avatar" />
+  <p><strong>Nombre:</strong> Juan Pérez</p>
+  <p><strong>Carrera:</strong> Diseño Digital</p>
+  <p><strong>Intereses:</strong> Animación, UX/UI, Modelado 3D</p>
+</section>
+
+<!-- Actividades PEC -->
+<section id="pec">
+  <h2>Actividades del PEC</h2>
+  <div class="card">📘 Actividad 1 – Diseño de Interfaces</div>
+  <div class="card">📘 Actividad 2 – Prototipado en Figma</div>
+  <div class="card">📘 Actividad 3 – Presentación UX</div>
+</section>
+
+<!-- Museo Virtual -->
+<section id="museo">
+  <h2>Museo Virtual</h2>
+  <p>Explora algunas obras digitales y prototipos del estudiante:</p>
+  <div class="gallery">
+    <img src="https://via.placeholder.com/100x100?text=Obra1" alt="Obra1" />
+    <img src="https://via.placeholder.com/100x100?text=Obra2" alt="Obra2" />
+    <img src="https://via.placeholder.com/100x100?text=Obra3" alt="Obra3" />
+  </div>
+</section>
+
+<!-- Video Diseño -->
+<section id="video">
+  <h2>Proyecto de Diseño Digital</h2>
+  <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Proyecto Video" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <p>Este video muestra el desarrollo de una campaña de branding para una marca ficticia.</p>
+</section>
+
+<script>
+  let loggedIn = false;
+
+  function showTab(tabId) {
+    document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+    document.getElementById(tabId).classList.add("active");
+  }
+
+  function login() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+    const msg = document.getElementById("login-msg");
+
+    if (user === "alumno" && pass === "1234") {
+      loggedIn = true;
+      msg.style.color = "green";
+      msg.textContent = "Acceso concedido.";
+      showTab("perfil");
+    } else {
+      msg.style.color = "red";
+      msg.textContent = "Usuario o contraseña incorrectos.";
+    }
+  }
+
+  function authTab(tabId) {
+    if (loggedIn) {
+      showTab(tabId);
+    } else {
+      alert("Por favor inicie sesión para acceder a esta sección.");
+      showTab("login");
+    }
+  }
+</script>
+
+</body>
+</html>
+✅ ¿Qué incluye?
+Inicio con descripción y banner ilustrativo.
+
+Login protegido por JS (usuario: alumno, contraseña: 1234).
+
+Secciones ocultas hasta loguearse (Perfil, PEC, Museo, Video).
+
+Avatar y datos del estudiante.
+
+Galería de imágenes estilo museo virtual.
+
+Video embebido de YouTube.
